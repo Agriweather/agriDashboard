@@ -1,0 +1,106 @@
+.sensor-list ,.group-list{
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 2em;
+}
+
+.sensor-list .col,.group-list .col {
+    padding: 15px;
+}
+
+.sensor-item ,.group-item{
+    background: #c1c1c1;
+    height: 200px;
+    border: 0px solid gray;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 3px 3px 4px 1px #bab6b6;
+    box-shadow: 3px 3px 4px 1px #bab6b6;
+    padding: 15px;
+    position: relative;
+}
+
+
+
+.add-button {
+    text-align: center;
+    top: 40%;
+    position: relative;
+}
+
+.add-button i,
+.sensor-close i,.group-close i {
+    cursor: pointer;
+}
+
+.md-48 {
+    font-size: 48px;
+}
+
+.F-right {
+    float: right !important;
+}
+
+
+.sensor-hr,.hr {
+    margin: 4px 0px;
+}
+
+.sensor-id,
+.sensor-num,.group-item-content{
+    margin: 10px;
+}
+
+.sensor-edit,.group-edit {
+    width: calc(100% - 30px);
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+.sensor-edit-btn {
+    width: 100%;
+}
+.edit-container{
+	width: 80%;
+}
+
+
+ .edit-container .row{
+ 	margin-top: 30px;
+
+ }
+ .edit-container .edit-btn-group{
+ 	width: 100%;
+ }
+ .edit-container .edit-btn-group button{
+ 	margin:0 10px;
+ } 
+ .edit-container select{
+    width: 100%;
+ }
+ .edit-container .sensor-column,  .edit-container .sensor-format{
+    border: 1px solid gray;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 3px 3px 4px 1px #bab6b6;
+    box-shadow: 3px 3px 4px 1px #bab6b6;
+    padding: 15px;
+    position: relative; 
+    height:300px;
+    overflow: scroll;
+ }
+ .edit-container .sensor-transfer-log{
+    border: 1px solid gray;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 3px 3px 4px 1px #bab6b6;
+    box-shadow: 3px 3px 4px 1px #bab6b6;
+    padding: 15px;
+    position: relative; 
+    height:100px;
+    overflow: scroll;
+ }
+ select#city,select#section{
+    width: auto;
+ }
