@@ -13,10 +13,20 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type="text/javascript" src="js/index.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
+    <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="assets/css/icons.css" rel="stylesheet" type="text/css" /> -->
+    <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+    <nav class="navbar navbar-toggleable-md navbar-inverse ">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,7 +34,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">即時監測</a>
+                    <a class="nav-link" href="monitor/monitor.html">即時監測</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="farm/admin.html">農用資料管理</a>
@@ -51,6 +61,7 @@
                         <div class=row>
                             <div class="col-10">
                                 <div class="sensor-mark">
+                                <i class="fa fa-thermometer-empty" aria-hidden="true"></i>
                                     Sensor 1
                                 </div>
                             </div>
@@ -68,7 +79,7 @@
                             <span>目前共有6個感測器欄位</span>
                         </div>
                         <div class='sensor-edit'>
-                            <a href="sensor/edit.html"><button type="button" class="btn btn-success sensor-edit-btn">編輯</button></a>
+                            <a href="sensor/edit.html"><button type="button" class="btn btn-primary waves-effect waves-light sensor-edit-btn">編輯</button></a>
                         </div>
                     </div>
                 </div>
@@ -77,6 +88,7 @@
                         <div class=row>
                             <div class="col-10">
                                 <div class="sensor-mark">
+                                    <i class="fa fa-thermometer-empty" aria-hidden="true"></i>
                                     Sensor 2
                                 </div>
                             </div>
@@ -94,7 +106,8 @@
                             <span>目前共有6個感測器欄位</span>
                         </div>
                         <div class='sensor-edit'>
-                            <a href="sensor/edit.html"><button type="button" class="btn btn-success sensor-edit-btn">編輯</button></a>
+                            <a href="sensor/edit.html"><button type="button" class="btn btn-primary waves-effect waves-light sensor-edit-btn">編輯</button></a>
+                            <!-- <a href="sensor/edit.html"><button type="button" class="btn btn-success sensor-edit-btn">編輯</button></a> -->
                         </div>
                     </div>
                 </div>
@@ -103,6 +116,7 @@
                         <div class=row>
                             <div class="col-10">
                                 <div class="sensor-mark">
+                                <i class="fa fa-thermometer-empty" aria-hidden="true"></i>
                                     Sensor 3
                                 </div>
                             </div>
@@ -120,7 +134,7 @@
                             <span>目前共有6個感測器欄位</span>
                         </div>
                         <div class='sensor-edit'>
-                            <a href="sensor/edit.html"><button type="button" class="btn btn-success sensor-edit-btn">編輯</button></a>
+                            <a href="sensor/edit.html"><button type="button" class="btn btn-primary waves-effect waves-light sensor-edit-btn">編輯</button></a>
                         </div>
                     </div>
                 </div>
@@ -129,6 +143,7 @@
                         <div class=row>
                             <div class="col-10">
                                 <div class="sensor-mark">
+                                <i class="fa fa-thermometer-empty" aria-hidden="true"></i>
                                     Sensor 4
                                 </div>
                             </div>
@@ -146,7 +161,7 @@
                             <span>目前共有6個感測器欄位</span>
                         </div>
                         <div class='sensor-edit'>
-                            <a href="sensor/edit.html"><button type="button" class="btn btn-success sensor-edit-btn">編輯</button></a>
+                            <a href="sensor/edit.html"><button type="button" class="btn btn-primary waves-effect waves-light sensor-edit-btn">編輯</button></a>
                         </div>
                     </div>
                 </div>
@@ -174,4 +189,19 @@
     </div>
 </body>
 
+
+
+<!-- <script src="assets/js/jquery.min.js"></script> -->
+        <!-- <script src="assets/js/bootstrap.min.js"></script> -->
+        <script src="assets/js/detect.js"></script>
+        <script src="assets/js/fastclick.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/jquery.blockUI.js"></script>
+        <script src="assets/js/waves.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/jquery.nicescroll.js"></script>
+        <script src="assets/js/jquery.scrollTo.min.js"></script>
+
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
 </html>

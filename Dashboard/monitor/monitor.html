@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AgriWeather Dashboard - farm admin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/ihover.css">
+    <script type="text/javascript" src="../js/sensor-edit.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
+    <link href="../assets/css/core.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/components.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="assets/css/icons.css" rel="stylesheet" type="text/css" /> -->
+    <link href="../assets/css/pages.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/menu.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/responsive.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <nav class="navbar navbar-toggleable-md navbar-inverse">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">AgriWeather</a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">開始輪播</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">即時監測</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../farm/admin.html">農用資料管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">感測器管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">作物類別維護</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="farm-list group-list">
+            <div class="row">
+                <div class="col col-12 col-sm-6 col-md-4">
+                    <div class="farm-item group-item">
+                        <div class=row>
+                            <div class="col-6">
+                                <div class="farm-mark">
+                                    農田1
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="checkbox checkbox-warning">
+                                    <input id="checkbox" type="checkbox">
+                                    <label for="checkbox">
+                                        加入輪播
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="sensor-hr hr">
+                        <div class="group-item-content">
+                            <div><span>2017-01-01建立</span></div>
+                            <div><span>目前種植萵苣</span></div>
+                            <div><span>目前共有6個感測器欄位</span></div>
+                        </div>
+                        <div class='group-edit'>
+                            <a href="edit.html"><button type="button" class="btn btn-default sensor-edit-btn">查看監測資料</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-12 col-sm-6 col-md-4">
+                    <div class="farm-item group-item">
+                        <div class=row>
+                            <div class="col-6">
+                                <div class="farm-mark">
+                                    農田1
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="checkbox checkbox-warning">
+                                    <input id="checkbox1" type="checkbox">
+                                    <label for="checkbox1">
+                                        加入輪播
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="sensor-hr hr">
+                        <div class="group-item-content">
+                            <div><span>2017-01-01建立</span></div>
+                            <div><span>目前種植萵苣</span></div>
+                            <div><span>目前共有6個感測器欄位</span></div>
+                        </div>
+                        <div class='group-edit'>
+                            <a href="edit.html"><button type="button" class="btn btn-default sensor-edit-btn">查看監測資料</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-12 col-sm-6 col-md-4">
+                    <div class="farm-item group-item">
+                        <div class=row>
+                            <div class="col-6">
+                                <div class="farm-mark">
+                                    農田1
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="checkbox checkbox-warning">
+                                    <input id="checkbox2" type="checkbox">
+                                    <label for="checkbox2">
+                                        加入輪播
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="sensor-hr hr">
+                        <div class="group-item-content">
+                            <div><span>2017-01-01建立</span></div>
+                            <div><span>目前種植萵苣</span></div>
+                            <div><span>目前共有6個感測器欄位</span></div>
+                        </div>
+                        <div class='group-edit'>
+                            <a href="edit.html"><button type="button" class="btn btn-default sensor-edit-btn">查看監測資料</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-12 col-sm-6 col-md-4">
+                    <div class="farm-item group-item">
+                        <div class=row>
+                            <div class="col-6">
+                                <div class="farm-mark">
+                                    農田1
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="checkbox checkbox-warning">
+                                    <input id="checkbox4" type="checkbox">
+                                    <label for="checkbox4">
+                                        加入輪播
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="sensor-hr hr">
+                        <div class="group-item-content">
+                            <div><span>2017-01-01建立</span></div>
+                            <div><span>目前種植萵苣</span></div>
+                            <div><span>目前共有6個感測器欄位</span></div>
+                        </div>
+                        <div class='group-edit'>
+                            <a href="edit.html"><button type="button" class="btn btn-default sensor-edit-btn">查看監測資料</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-12 col-sm-6 col-md-4">
+                    <div class="farm-item group-item">
+                        <div class=row>
+                            <div class="col-6">
+                                <div class="farm-mark">
+                                    農田1
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="checkbox checkbox-warning">
+                                    <input id="checkbox5" type="checkbox">
+                                    <label for="checkbox5">
+                                        加入輪播
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="sensor-hr hr">
+                        <div class="group-item-content">
+                            <div><span>2017-01-01建立</span></div>
+                            <div><span>目前種植萵苣</span></div>
+                            <div><span>目前共有6個感測器欄位</span></div>
+                        </div>
+                        <div class='group-edit'>
+                            <a href="edit.html"><button type="button" class="btn btn-default sensor-edit-btn">查看監測資料</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="indexModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-danger delete-confirm" data-dismiss="modal">刪除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+    <script src="../assets/js/detect.js"></script>
+    <script src="../assets/js/fastclick.js"></script>
+    <script src="../assets/js/jquery.slimscroll.js"></script>
+    <script src="../assets/js/jquery.blockUI.js"></script>
+    <script src="../assets/js/waves.js"></script>
+    <script src="../assets/js/wow.min.js"></script>
+    <script src="../assets/js/jquery.nicescroll.js"></script>
+    <script src="../assets/js/jquery.scrollTo.min.js"></script>
+
+    <script src="../assets/js/jquery.core.js"></script>
+    <script src="../assets/js/jquery.app.js"></script>
+</html>

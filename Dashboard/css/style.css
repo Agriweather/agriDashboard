@@ -1,3 +1,12 @@
+
+.card-box {
+    margin-top:10px;
+}
+
+
+.navbar{
+    background-color: #36404a !important;
+}
 .sensor-list ,.group-list{
     width: 80%;
     margin: 0 auto;
@@ -9,11 +18,11 @@
 }
 
 .sensor-item ,.group-item{
-    background: #c1c1c1;
+    background: #ffffff;
     height: 200px;
     border: 0px solid gray;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    /*-webkit-border-radius: 10px;*/
+    border-radius: 5px;
     -webkit-box-shadow: 3px 3px 4px 1px #bab6b6;
     box-shadow: 3px 3px 4px 1px #bab6b6;
     padding: 15px;
@@ -80,20 +89,32 @@
     width: 100%;
  }
  .edit-container .sensor-column,  .edit-container .sensor-format{
-    border: 1px solid gray;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    background: #ffffff;
+    height: 200px;
+    border: 0px solid gray;
+    /*-webkit-border-radius: 10px;*/
+    border-radius: 5px;
     -webkit-box-shadow: 3px 3px 4px 1px #bab6b6;
     box-shadow: 3px 3px 4px 1px #bab6b6;
     padding: 15px;
-    position: relative; 
+    position: relative;
+
+
+    /*border: 1px solid gray;*/
+    /*-webkit-border-radius: 10px;*/
+    /*border-radius: 10px;*/
+    /*-webkit-box-shadow: 3px 3px 4px 1px #bab6b6;*/
+    /*box-shadow: 3px 3px 4px 1px #bab6b6;*/
+    /*padding: 15px;*/
+    /*position: relative; */
     height:300px;
     overflow: scroll;
  }
  .edit-container .sensor-transfer-log{
-    border: 1px solid gray;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    background: #ffffff;
+    /*border: 1px solid gray;*/
+    /*-webkit-border-radius: 10px;*/
+    border-radius: 5px;
     -webkit-box-shadow: 3px 3px 4px 1px #bab6b6;
     box-shadow: 3px 3px 4px 1px #bab6b6;
     padding: 15px;
