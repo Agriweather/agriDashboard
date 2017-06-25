@@ -13,7 +13,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/ihover.css">
-    <script type="text/javascript" src="../js/sensor-edit.js"></script>
+    <script type="text/javascript" src="../js/index.js"></script>
+    <!-- <script type="text/javascript" src="../js/sensor-edit.js"></script> -->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
@@ -50,137 +51,16 @@
     </nav>
     <div class="container-fluid">
         <div class="farm-list group-list">
-            <div class="row">
+            <div class="row" id="farm_data">
                 <div class="col col-12 col-sm-6 col-md-4">
                     <div class="farm-item group-item add-item">
                         <div class="add-button"><a href="edit.html"><i class="material-icons md-48">add</i></a></div>
                     </div>
                 </div>
-                <div class="col col-12 col-sm-6 col-md-4">
-                    <div class="farm-item group-item">
-                        <div class=row>
-                            <div class="col-10">
-                                <div class="farm-mark">
-                                    農田1
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="group-close  F-right">
-                                    <i class="material-icons md-light">cancel</i>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="sensor-hr hr">
-                        <div class="group-item-content">
-                            <div><span>2017-01-01建立</span></div>
-                            <div><span>目前種植萵苣</span></div>
-                            <div><span>目前共有6個感測器欄位</span></div>
-                        </div>
-                        <div class='group-edit'>
-                            <a href="edit.html"><button type="button" class="btn btn-default sensor-edit-btn">編輯</button></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-12 col-sm-6 col-md-4">
-                    <div class="farm-item group-item">
-                        <div class=row>
-                            <div class="col-10">
-                                <div class="farm-mark">
-                                    農田1
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="group-close  F-right">
-                                    <i class="material-icons md-light">cancel</i>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="sensor-hr hr">
-                        <div class="group-item-content">
-                            <div><span>2017-01-01建立</span></div>
-                            <div><span>目前種植萵苣</span></div>
-                            <div><span>目前共有6個感測器欄位</span></div>
-                        </div>
-                        <div class='group-edit'>
-                            <a href="edit.html"><button type="button" class="btn btn-default sensor-edit-btn">編輯</button></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-12 col-sm-6 col-md-4">
-                    <div class="farm-item group-item">
-                        <div class=row>
-                            <div class="col-10">
-                                <div class="farm-mark">
-                                    農田1
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="group-close  F-right">
-                                    <i class="material-icons md-light">cancel</i>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="sensor-hr hr">
-                        <div class="group-item-content">
-                            <div><span>2017-01-01建立</span></div>
-                            <div><span>目前種植萵苣</span></div>
-                            <div><span>目前共有6個感測器欄位</span></div>
-                        </div>
-                        <div class='group-edit'>
-                            <a href="edit.html"><button type="button" class="btn btn-default sensor-edit-btn">編輯</button></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-12 col-sm-6 col-md-4">
-                    <div class="farm-item group-item">
-                        <div class=row>
-                            <div class="col-10">
-                                <div class="farm-mark">
-                                    農田1
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="group-close  F-right">
-                                    <i class="material-icons md-light">cancel</i>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="sensor-hr hr">
-                        <div class="group-item-content">
-                            <div><span>2017-01-01建立</span></div>
-                            <div><span>目前種植萵苣</span></div>
-                            <div><span>目前共有6個感測器欄位</span></div>
-                        </div>
-                        <div class='group-edit'>
-                            <a href="edit.html"><button type="button" class="btn btn-default sensor-edit-btn">編輯</button></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-12 col-sm-6 col-md-4">
-                    <div class="farm-item group-item">
-                        <div class=row>
-                            <div class="col-10">
-                                <div class="farm-mark">
-                                    農田1
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="group-close  F-right">
-                                    <i class="material-icons md-light">cancel</i>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="sensor-hr hr">
-                        <div class="group-item-content">
-                            <div><span>2017-01-01建立</span></div>
-                            <div><span>目前種植萵苣</span></div>
-                            <div><span>目前共有6個感測器欄位</span></div>
-                        </div>
-                        <div class='group-edit'>
-                            <a href="edit.html"><button type="button" class="btn btn-default sensor-edit-btn">編輯</button></a>
-                        </div>
-                    </div>
-                </div>
+                
+                
+                
+                
 
                 
                 
