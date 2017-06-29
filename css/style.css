@@ -125,3 +125,14 @@
  select#city,select#section{
     width: auto;
  }
+.r-card{
+    padding:20px!important;
+
+}
+.inner-card{
+    background-color: white;
+    height: 100%;
+    padding: 30px;
+    border-radius: 10px;
+
+}

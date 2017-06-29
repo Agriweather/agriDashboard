@@ -14,9 +14,11 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/model.js"></script>
-    
+    <script type="text/javascript" src="js/display.js"></script>
+    <script type="text/javascript" src="js/controller.js"></script>
+    <script type="text/javascript" src="js/gauge.min.js"></script>
+    <script type="text/javascript" src="js/jquery.matchHeight.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
     <!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
     <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -24,6 +26,10 @@
     <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/c3/c3.min.css" rel="stylesheet" type="text/css" />
+    <script src="assets/js/modernizr.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/slick.css" />
+    <script type="text/javascript" src="js/slick.min.js"></script>
 </head>
 
 <body>
@@ -35,30 +41,22 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="monitor/monitor.html">即時監測</a>
+                    <a class="nav-link" href="#" nav-target="monitor">即時監測</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="farm/admin.html">農用資料管理</a>
+                    <a nav-target="farm" class="nav-link" href="#">農用資料管理</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">感測器管理</a>
+                    <a nav-target="sensor" class="nav-link" href="#">感測器管理</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">作物類別維護</a>
+                    <a nav-target="crop" class="nav-link" href="#">作物類別維護</a>
                 </li>
             </ul>
         </div>
     </nav>
     <div class="container-fluid">
-        <div class="sensor-list">
-            <div class="row" id="sensor_data">
-                <div class="col col-12 col-sm-6 col-md-4">
-                    <div class="sensor-item add-item">
-                        <div class="add-button"><a href="sensor/edit.html"><i class="material-icons md-48">add</i></a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
     <div class="modal fade" id="indexModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -80,20 +78,27 @@
         </div>
     </div>
 </body>
-
-
-
 <!-- <script src="assets/js/jquery.min.js"></script> -->
-        <!-- <script src="assets/js/bootstrap.min.js"></script> -->
-        <script src="assets/js/detect.js"></script>
-        <script src="assets/js/fastclick.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/jquery.blockUI.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/wow.min.js"></script>
-        <script src="assets/js/jquery.nicescroll.js"></script>
-        <script src="assets/js/jquery.scrollTo.min.js"></script>
+<!-- <script src="assets/js/bootstrap.min.js"></script> -->
+<script src="assets/js/detect.js"></script>
+<script src="assets/js/fastclick.js"></script>
+<script src="assets/js/jquery.slimscroll.js"></script>
+<script src="assets/js/jquery.blockUI.js"></script>
+<script src="assets/js/waves.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/jquery.nicescroll.js"></script>
+<script src="assets/js/jquery.scrollTo.min.js"></script>
+<script src="assets/js/jquery.core.js"></script>
+<script src="assets/js/jquery.app.js"></script>
+<script type="text/javascript" src="assets/plugins/d3/d3.min.js"></script>
+<script type="text/javascript" src="assets/plugins/c3/c3.min.js"></script>
+<script src="assets/pages/jquery.c3-chart.init.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    controller.init($('.container-fluid'), $('ul.navbar-nav'));
+    $('a[nav-target="farm"]').trigger('click');
+    
+})
+</script>
 
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
 </html>

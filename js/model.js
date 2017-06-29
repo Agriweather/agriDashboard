@@ -1,20 +1,23 @@
 var API = {
-    'host': 'https://demo.smartdog.com.tw/agri/',
+    'host': 'http://demo.smartdog.com.tw/agri/',
     'farm_get': function(conf) {
+        var callback = conf.callback;
         $.ajax({
-            async: false,
+            async:false,
             url: API.host + 'mobile/farm',
+            jsonp:'callback',
             type: 'GET',
+            contentType:'application/json',
+            dataType:'jsonp',
             success: function(json) {
-                console.log(json);
-                resp = json;
+                callback(json);
             }
         });
     }, // end farm_get function
     'farm_getDetail': function(conf) {
         $.ajax({
             async: false,
-            url: API.host + 'mobile/farm' + conf.id,
+            url: API.host + 'mobile/farm/' + conf.id,
             type: 'GET',
             success: function(json) {
                 console.log(json);
@@ -60,13 +63,16 @@ var API = {
         });
     }, // end farm_update function
     'sensor_get': function(conf) {
+        var callback = conf.callback;
         $.ajax({
-            async: false,
+            async:false,
             url: API.host + 'mobile/sensor',
+            jsonp:'callback',
             type: 'GET',
+            contentType:'application/json',
+            dataType:'jsonp',
             success: function(json) {
-                console.log(json);
-                resp = json;
+                callback(json);
             }
         });
     }, // end sensor_get function
