@@ -18,7 +18,10 @@ var API = {
         $.ajax({
             async: false,
             url: API.host + 'mobile/farm/' + conf.id,
+            jsonp:'callback',
             type: 'GET',
+            contentType:'application/json',
+            dataType:'jsonp',
             success: function(json) {
                 console.log(json);
                 resp = json;
@@ -29,7 +32,10 @@ var API = {
         $.ajax({
             async: false,
             url: API.host + 'mobile/farm' + conf.id,
+            jsonp:'callback',
             type: 'DELETE',
+            contentType:'application/json',
+            dataType:'jsonp',
             success: function(json) {
                 console.log(json);
                 resp = json;
@@ -40,9 +46,11 @@ var API = {
         $.ajax({
             async: false,
             url: API.host + 'mobile/farm',
-            contentType: 'application/json',
+            jsonp:'callback',
             data: JSON.stringify(conf.data),
             type: 'POST',
+            contentType:'application/json',
+            dataType:'jsonp',
             success: function(json) {
                 console.log(json);
                 resp = json;
@@ -53,9 +61,11 @@ var API = {
         $.ajax({
             async: false,
             url: API.host + 'mobile/farm',
+            jsonp:'callback',
             contentType: 'application/json',
             data: JSON.stringify(conf.data),
             type: 'PUT',
+            dataType:'jsonp',
             success: function(json) {
                 console.log(json);
                 resp = json;
@@ -80,7 +90,10 @@ var API = {
         $.ajax({
             async: false,
             url: API.host + 'mobile/sensor' + conf.id,
+            jsonp:'callback',
             type: 'GET',
+            contentType:'application/json',
+            dataType:'jsonp',
             success: function(json) {
                 console.log(json);
                 resp = json;
@@ -90,10 +103,13 @@ var API = {
     'sensor_create': function(conf) {
         $.ajax({
             async: false,
+            jsonp:'callback',
             url: API.host + 'mobile/sensor',
             contentType: 'application/json',
             data: JSON.stringify(conf.data),
             type: 'POST',
+            contentType:'application/json',
+            dataType:'jsonp',
             success: function(json) {
                 console.log(json);
                 resp = json;
@@ -103,10 +119,13 @@ var API = {
     'sensor_update': function(conf) {
         $.ajax({
             async: false,
+            jsonp:'callback',
             url: API.host + 'mobile/sensor',
             contentType: 'application/json',
             data: JSON.stringify(conf.data),
             type: 'PUT',
+            contentType:'application/json',
+            dataType:'jsonp',
             success: function(json) {
                 console.log(json);
                 resp = json;
@@ -116,8 +135,11 @@ var API = {
     'sensor_delete': function(conf) {
         $.ajax({
             async: false,
+            jsonp:'callback',
             url: API.host + 'mobile/sensor',
             type: 'DELETE',
+            contentType:'application/json',
+            dataType:'jsonp',
             success: function(json) {
                 console.log(json);
                 resp = json;
