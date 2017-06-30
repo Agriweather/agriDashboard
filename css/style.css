@@ -67,7 +67,7 @@
     bottom: 15px;
 }
 
-.sensor-edit-btn {
+.sensor-edit-btn,.farm-edit-btn {
     width: 100%;
 }
 .edit-container{
@@ -88,7 +88,7 @@
  .edit-container select{
     width: 100%;
  }
- .edit-container .sensor-column,  .edit-container .sensor-format{
+ .edit-container .sensor-column, .edit-container .sensor-format,.edit-container .list-group{
     background: #ffffff;
     height: 200px;
     border: 0px solid gray;
@@ -135,4 +135,9 @@
     padding: 30px;
     border-radius: 10px;
 
+}
+.connectionsortable .form-group{
+    background-color: gainsboro;
+    padding:5px;
+    margin:1px;
 }
