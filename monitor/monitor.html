@@ -32,7 +32,7 @@
     <script type="text/javascript" src="js/slick.min.js"></script>
 </head>
 
-<body>
+<body style="height: 100%">
     <nav class="navbar navbar-toggleable-md navbar-inverse ">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -206,6 +206,7 @@ $(document).ready(function() {
             fractionDigits: 0 // Optional: Numerical precision. 0=round off.
         },
     };
+
     var target = document.getElementById('foo'); // your canvas element
     var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
     gauge.maxValue = 100; // set max gauge value
@@ -213,11 +214,11 @@ $(document).ready(function() {
     gauge.animationSpeed = 32; // set animation speed (32 is default value)
     gauge.set(60); // set actual value
     $('.slick').slick({
-        autoplay:true,
+        autoplay:false,
         arrows:false,
-        autoplaySpeed:2000
-    })
-})
+        autoplaySpeed:100000
+    });
+});
 </script>
 
 </html>

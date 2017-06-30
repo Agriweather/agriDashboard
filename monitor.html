@@ -30,6 +30,20 @@
     <script src="assets/js/modernizr.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/slick.css" />
     <script type="text/javascript" src="js/slick.min.js"></script>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            min-height: 100% !important;
+        }
+        svg{
+            height: 150px;
+        }
+        .slick{
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -39,20 +53,7 @@
         </button>
         <a class="navbar-brand" href="index.html">AgriWeather</a>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <ul class="navbar-nav nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" nav-target="monitor">即時監測</a>
-                </li>
-                <li class="nav-item">
-                    <a nav-target="farm" class="nav-link" href="#">農用資料管理</a>
-                </li>
-                <li class="nav-item">
-                    <a nav-target="sensor" class="nav-link" href="#">感測器管理</a>
-                </li>
-                <li class="nav-item">
-                    <a nav-target="crop" class="nav-link" href="#">作物類別維護</a>
-                </li>
-            </ul>
+            
         </div>
     </nav>
     <div class="container-fluid">
@@ -62,29 +63,29 @@
                     <div class="col col-6 col-sm-6 r-card">
                         <div class="inner-card">
                             <h1 style="margin: 0,0">福壽螺出現機率</h1>
-                            <canvas id="foo" style="width:100%"></canvas>
+                            <canvas id="foo" style="width:200px height:100px"></canvas>
                         </div>
                     </div>
-                    <div class="col col-6 col-sm-6 r-card">
+                    <div class="col col-3 col-sm-3 r-card">
                         <div class="inner-card">
-                            <div class="card-box">
-                                <h4 class="m-t-0 m-b-30 header-title"><b>Roated Chart</b></h4>
-                                <div id="roated-chart"></div>
-                            </div>
+                            <h1 style="margin: 0,0">最低氣溫</h1>
+                            <h2 id="temp_low" style="text-align: center;color:green">23.4度</h2>
+                        </div>
+                    </div>
+                    <div class="col col-3 col-sm-3 r-card">
+                        <div class="inner-card">
+                            <h1 style="margin: 0,0" >最高氣溫</h1>
+                            <h2 id="temp_high" style="text-align: center; color:green">31.4度</h2>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col col-3 col-sm-3 r-card">
+                    <div class="col col-6 col-sm-6 r-card">
                         <div class="inner-card">
-                            <h1 style="margin: 0,0">最低氣溫</h1>
-                            <h2 style="text-align: center;color:green">23.4度</h2>
-                        </div>
-                    </div>
-                    <div class="col col-3 col-sm-3 r-card">
-                        <div class="inner-card">
-                            <h1 style="margin: 0,0">最高氣溫</h1>
-                            <h2 style="text-align: center; color:green">31.4度</h2>
+                            <div class="card-box">
+                                <h4 class="m-t-0 m-b-30 header-title"><b>Roated Chart</b></h4>
+                                <div id="chart"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="col col-6 col-sm-6 r-card">
@@ -105,16 +106,6 @@
                             <canvas id="foo" style="width:100%"></canvas>
                         </div>
                     </div>
-                    <div class="col col-6 col-sm-6 r-card">
-                        <div class="inner-card">
-                            <div class="card-box">
-                                <h4 class="m-t-0 m-b-30 header-title"><b>Chart</b></h4>
-                                <div id="chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col col-3 col-sm-3 r-card">
                         <div class="inner-card">
                             <h1 style="margin: 0,0">最低氣溫</h1>
@@ -125,6 +116,17 @@
                         <div class="inner-card">
                             <h1 style="margin: 0,0">最高氣溫</h1>
                             <h2 style="text-align: center; color:green">31.4度</h2>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col col-6 col-sm-6 r-card">
+                        <div class="inner-card">
+                            <div class="card-box">
+                                <h4 class="m-t-0 m-b-30 header-title"><b>Chart</b></h4>
+                                <div id="chart"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="col col-6 col-sm-6 r-card">
@@ -175,7 +177,47 @@
 <script type="text/javascript" src="assets/plugins/c3/c3.min.js"></script>
 <script src="assets/pages/jquery.c3-chart.init.js"></script>
 <script type="text/javascript">
+
+var temp =['temperature'];
+var hum = ['humidity'];
+var time = [];
+var temp_high = [];
+
 $(document).ready(function() {
+
+    var url = 'http://demo.smartdog.com.tw/agri/mobile/';
+    var data = {'length':'30' , 'start':'2017-05-30 16:00:00' , 'end':'2017-06-01 18:00:00'}
+
+    
+
+    $.ajax({
+        method:'POST',
+        url:'agriMonitor',
+        data:data
+    }).done(function(data){
+        console.log(data);
+
+        var detail = data.data.Data;
+
+
+        for(i = 0 ; i < detail.length;i++){
+            if(i % 5 == 0){
+                time.push(detail[i]);
+            }
+            else if(i % 5 == 1){
+                temp.push(detail[i]);
+            }
+            else if(i % 5 == 2){
+                temp_high.push(detail[i]);
+            }
+            else if(i % 5 == 3){
+                hum.push(detail[i]);
+            }
+        }
+        //data -> change the temperature humidity data below
+    });
+
+
     // controller.init($('.container-fluid'), $('ul.navbar-nav'));
     // // $('a[nav-target="farm"]').trigger('click');
     var opts = {
@@ -217,7 +259,40 @@ $(document).ready(function() {
         arrows:false,
         autoplaySpeed:2000
     })
-})
+});
+
+var chart = c3.generate({
+    bindto: '#chart',
+    data: {
+      columns: [
+        temp,
+        hum
+      ],
+      axes: {
+        humidity: 'y2' // ADD
+      }
+    },
+    axis: {
+      y: {
+        label: { // ADD
+          text: 'Temperature Label',
+          position: 'outer-middle'
+        },
+      },
+      y2: {
+        show: true, // ADD
+        label: { // ADD
+          text: 'Humidity Label',
+          position: 'outer-middle'
+        }
+      }
+    }
+});
+
+$('#temp_low').html(temp[temp.length-1]+'度');
+$('#temp_high').html(temp_high[temp_high.length-1]+ '度');
+
+
 </script>
 
 </html>
