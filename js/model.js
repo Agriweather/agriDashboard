@@ -205,7 +205,8 @@ var dashboard = $.extend(dashboard, {
             // });
 
 
-            resp = JSON.parse('{"success":true,"data":[{"ID":5,"Name":"氣象預報1","StationName":"測站1"},{"ID":10,"Name":"氣象預報2","StationName":"測站5"}]}');
+            resp = JSON.parse('{"success":true,"data":[{"ID":5,"StationName":"測站1","Station_id":"1","Lat":23,"Lon":121},{"ID":10,"Station_id":"5","StationName":"測站5","Lat":23,"Lon":121}]}');
+            console.log(resp);
             return resp;
         }, // end sensor_get function
 
@@ -223,7 +224,7 @@ var dashboard = $.extend(dashboard, {
             //     }
             // });
 
-            resp = JSON.parse('{"success":true,"data":{"ID":5,"Name":"氣象預報1","StationName":"測站1"},"Lat":23,"Lon":121,"StationID":123}');
+            resp = JSON.parse('{"success":true,"data":{"ID":5,"StationName":"測站1","Station_id":"1","Lat":23,"Lon":121}}');
             return resp;
         },
 
@@ -241,6 +242,13 @@ var dashboard = $.extend(dashboard, {
             //     }
             // });
         }, // end sensor_post function
+
+        get_stations:function(){
+
+
+            return JSON.parse('{"success":true,"data":[{"StationName":"測站1","Station_id":"1","Lat":23,"Lon":121},{"StationName":"測站2","Station_id":"5","Lat":23,"Lon":122}]}')
+
+        }, //end get_stations function
 
         weather_put: function(conf) {
             var obj = conf.obj;

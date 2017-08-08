@@ -1,5 +1,6 @@
 var dashboard = $.extend(dashboard, {
     controller: {
+        infowindow: null,
         init: function(conf) {
             var action = conf.action,
                 target = conf.target;
@@ -13,15 +14,15 @@ var dashboard = $.extend(dashboard, {
                 dashboard.controller.createSensorList({
                     target: target
                 })
-            } else if(action == 'monitor'){
+            } else if (action == 'monitor') {
                 // dashboard.controller.initChart({
                 //     target: target
                 // });
                 dashboard.controller.get_ChartData({
-                    target:target
-                }).then(function(data){
+                    target: target
+                }).then(function(data) {
                     return dashboard.controller.init_carousel(data);
-                }).then(function(data){
+                }).then(function(data) {
                     // console.log('3');
                     // $.each(data.SensorChartJSON,function(i,obj){
                     //     dashboard.controller.initChart({
@@ -30,7 +31,7 @@ var dashboard = $.extend(dashboard, {
                     //     });
                     // });
                     dashboard.controller.initChart({
-                        target: 'carousel'+1,
+                        target: 'carousel' + 1,
                         temp: data.SensorChartJSON,
                         humidity: data.HumidityChartJSON
                     });
@@ -39,13 +40,20 @@ var dashboard = $.extend(dashboard, {
                 dashboard.controller.createWeatherList({
                     target: target
                 })
+            } else if(action == 'about'){
+                target.empty();
+                target.append('<iframe id="about_frame" src="about/about.html" frameborder="0"></iframe>');
+                $('#about_frame').width('100%');
+
             }
         },
         createSensorList: function(conf) {
             var target = conf.target;
             var row = $('<div class="row" style="padding-top:20px;"></div>').appendTo(target);
             var SensorJson = dashboard.model.sensor_get();
+            var addBtn;
             if (SensorJson.success) {
+                addBtn = $('<div class="col-12 col-sm-6 col-md-4 add-card"><span class="add-btn"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></span></div>').appendTo(row);
                 var data = SensorJson.data;
                 $.each(data, function(i, obj) {
                     var contentStr = dashboard.display.createCardContent({
@@ -82,13 +90,14 @@ var dashboard = $.extend(dashboard, {
                         param: { id: id },
                         callback: function(param) {
                             //TODO: delete farm
-                            dashboard.model.farm_delete({ id: param.id });
+                            dashboard.model.sensor_delete({ id: param.id });
                             dashboard.display.closeModal();
+                            target.empty();
+                            dashboard.controller.createSensorList({ target: target });
                         }
                     });
                 })
 
-                addBtn = $('<div class="col-12 col-sm-6 col-md-4 add-card"><span class="add-btn"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></span></div>').appendTo(row);
                 addBtn.find('span').on('click', function(ev) {
                     dashboard.controller.editSensor({
                         target: target,
@@ -113,31 +122,27 @@ var dashboard = $.extend(dashboard, {
             var row = $('<div class="row" style="padding-top:20px;"></div>').appendTo(target);
             var WeatherJson = dashboard.model.weather_get();
             if (WeatherJson.success) {
-                var data = FarmJson.data;
+                var data = WeatherJson.data;
+                addBtn = $('<div class="col-12 col-sm-6 col-md-4 add-card"><span class="add-btn"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></span></div>').appendTo(row);
+                addBtn.find('span').on('click', function(ev) {
+                    dashboard.controller.editWeather({
+                        target: target,
+                        id: '',
+                        action: 'add'
+                    })
+                });
                 $.each(data, function(i, obj) {
                     var contentStr = dashboard.display.createCardContent({
-                        iconImg: 'fa-tree',
-                        content: [{
-                            icon: 'fa-shower',
-                            label: '正在種植',
-                            text: obj.CropName
-                        }, {
-                            icon: 'fa-thermometer-full',
-                            label: '感測器總成',
-                            text: obj.SensorCount
-                        }, {
-                            icon: 'fa-calendar',
-                            label: '',
-                            text: obj.CreateDatetime
-                        }]
+                        iconImg: 'fa-sun-o',
+                        content: []
                     });
                     var card = dashboard.display.createCard({
-                        title: obj.Name,
+                        title: obj.StationName,
                         hasBtn: true,
                         deleteBtn: true,
                         btnText: '編輯',
                         attr: [{
-                            key: 'farm-id',
+                            key: 'weather-id',
                             val: obj.ID
                         }, {
                             key: 'action',
@@ -145,6 +150,7 @@ var dashboard = $.extend(dashboard, {
                         }],
                         content: contentStr
                     });
+
                     row.append(card);
                 });
 
@@ -161,14 +167,6 @@ var dashboard = $.extend(dashboard, {
                             dashboard.display.closeModal();
                         }
                     });
-                })
-                addBtn = $('<div class="col-12 col-sm-6 col-md-4 add-card"><span class="add-btn"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></span></div>').appendTo(row);
-                addBtn.find('span').on('click', function(ev) {
-                    dashboard.controller.editWeather({
-                        target: target,
-                        id: '',
-                        action: 'add'
-                    })
                 })
 
                 target.find('.card-btn').on('click', function(ev) {
@@ -187,8 +185,10 @@ var dashboard = $.extend(dashboard, {
             var target = conf.target;
             var row = $('<div class="row" style="padding-top:20px;"></div>').appendTo(target);
             var FarmJson = dashboard.model.farm_get();
+            var addBtn;
             if (FarmJson.success) {
                 var data = FarmJson.data;
+                addBtn = $('<div class="col-12 col-sm-6 col-md-4 add-card"><span class="add-btn"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></span></div>').appendTo(row);
                 $.each(data, function(i, obj) {
                     var contentStr = dashboard.display.createCardContent({
                         iconImg: 'fa-tree',
@@ -236,7 +236,6 @@ var dashboard = $.extend(dashboard, {
                         }
                     });
                 })
-                addBtn = $('<div class="col-12 col-sm-6 col-md-4 add-card"><span class="add-btn"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></span></div>').appendTo(row);
                 addBtn.find('span').on('click', function(ev) {
                     dashboard.controller.editFarm({
                         target: target,
@@ -492,6 +491,87 @@ var dashboard = $.extend(dashboard, {
             else
                 dashboard.model.sensor_put({ obj: saveObj });
         },
+        editWeather: function(conf) {
+            var action = conf.action,
+                id = action == 'edit' ? conf.id : '',
+                target = conf.target;
+            target.empty();
+
+            var setting_row = $('<div class="row setting_block"></div>').appendTo(target);
+            var setting_group = $('<div class="col-12 col-md-4 basic_setting"></div>').appendTo(setting_row);;
+            var map_sec = $('<div class="col-12 col-md-8 map-section"><input id="pac-input" class="controls" type="text" placeholder="請輸入位址.."><div id="map"></div></div>').appendTo(setting_row);
+            setting_group.append('<div class="station_div">選擇測站：</div><div class="input-group"> <select  id="station_select" class="form-control"><option>請選擇</option></div>')
+            setting_group.append('<div class="btn-group" role="group" ><button type="button" id="btn_back" class="btn btn-secondary">返回</button><button type="button" id="btn_save" class="btn btn-primary">儲存</button></div>')
+            var map = dashboard.controller.initMap({ target: map_sec });
+
+            var station_arr = dashboard.model.get_stations().data;
+            var station_marker = [];
+            $('.centerMarker').remove();
+            var bounds = new google.maps.LatLngBounds();
+
+            $.each(station_arr, function(i, obj) {
+                var opt = '<option value="' + obj.Station_id + '">' + obj.StationName + '</option>';
+                $(opt).appendTo($('#station_select'));
+                var marker = new google.maps.Marker({
+                    position: { lat: obj.Lat, lng: obj.Lon },
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                    title: obj.Station_id
+                });
+
+                bounds.extend({ lat: obj.Lat, lng: obj.Lon });
+                var content = '<div id="marker-content">' +
+                    '<div id="title"><h2">' + obj.StationName + '</h2>' +
+                    '</div></div>';
+                var infowindow = new google.maps.InfoWindow({
+                    content: content
+                });
+                marker.addListener('click', function() {
+                    if (dashboard.infowindow != null)
+                        dashboard.infowindow.close();
+                    infowindow.open(map, marker);
+                    dashboard.infowindow = infowindow;
+                    console.log($(this)[0]);
+                    map.setCenter($(this)[0].position);
+
+                    $('#station_select').val($(this)[0].title);
+                });
+                station_marker.push(marker);
+            });
+            map.fitBounds(bounds);
+
+            $('#station_select').on('change', function(i, ele) {
+                var id = $(this).val();
+                var target_marker = null;
+                $.each(station_marker, function(i, marker) {
+                    if (marker.title == id)
+                        target_marker = marker;
+                })
+                if (target_marker != null)
+                    new google.maps.event.trigger(target_marker, 'click');
+            });
+
+
+
+
+            if (action == 'edit') {
+                var default_val = dashboard.model.weather_getDetail({ id: id });
+                $('#station_select').val(default_val.Station_id);
+                $('#station_select').trigger('change');
+
+            }
+
+            $('#btn_back').on('click', function() {
+                $('#navbarNavDropdown > ul > li.nav-item.dropdown > div > a:nth-child(3)').trigger('click');
+            });
+
+            $('#btn_save').on('click', function() {
+                dashboard.controller.saveFarm({ id: id, action: action });
+                $('#navbarNavDropdown > ul > li.nav-item.dropdown > div > a:nth-child(3)').trigger('click');
+            });
+
+        }, // end editWeather function
         initMap: function(conf) {
             var target = conf.target;
 
@@ -600,8 +680,8 @@ var dashboard = $.extend(dashboard, {
 
             return map;
         },
-        initChart:function(conf){
-            var target = '#'+conf.target;
+        initChart: function(conf) {
+            var target = '#' + conf.target;
             // console.log(target);
 
             var HumidityChartJSON = conf.humidity;
@@ -612,22 +692,22 @@ var dashboard = $.extend(dashboard, {
 
             d3.csv("js/wind_data.csv", function(d) {
                 // console.log(d);
-              return {
-                date: d.created_at,
-                id: d.entry_id,
-                field1: d.field1,
-                data1: d.field2,
-                field3: d.field3,
-                field4: d.field4,
-                field5: d.field5
-              };
+                return {
+                    date: d.created_at,
+                    id: d.entry_id,
+                    field1: d.field1,
+                    data1: d.field2,
+                    field3: d.field3,
+                    field4: d.field4,
+                    field5: d.field5
+                };
             }, function(error, rows) {
                 // console.log(rows);
-                console.log(rows[rows.length-1]);
-                current_wind_direction = rows[rows.length-1].field1;
-                current_wind_speed = rows[rows.length-1].field3;
-                current_rain = rows[rows.length-1].field4;
-                
+                console.log(rows[rows.length - 1]);
+                current_wind_direction = rows[rows.length - 1].field1;
+                current_wind_speed = rows[rows.length - 1].field3;
+                current_rain = rows[rows.length - 1].field4;
+
                 console.log(current_wind_speed, current_wind_direction, current_rain);
 
 
@@ -636,16 +716,16 @@ var dashboard = $.extend(dashboard, {
                 SensorChartJSON = JSON.stringify(SensorChartJSON);
                 SensorChartJSON = JSON.parse(SensorChartJSON);
                 // console.log(SensorChartJSON.data);
-                
-                var current_temp = SensorChartJSON.data[SensorChartJSON.data.length-1].data1;
-                var current_humidity = HumidityChartJSON.data[HumidityChartJSON.data.length-1].data1;
+
+                var current_temp = SensorChartJSON.data[SensorChartJSON.data.length - 1].data1;
+                var current_humidity = HumidityChartJSON.data[HumidityChartJSON.data.length - 1].data1;
                 console.log(current_humidity, current_temp);
 
                 var max = {};
                 max.version = null;
                 var min = {};
                 min.version = null;
-                for(i = 0 ; i < SensorChartJSON.data.length ; i++){
+                for (i = 0; i < SensorChartJSON.data.length; i++) {
                     var current = SensorChartJSON.data[i].data1;
                     if (max.version === null || current > max.version) {
                         max.version = current;
@@ -667,7 +747,7 @@ var dashboard = $.extend(dashboard, {
                 SensorChartJSON['marker'] = marker;
                 // console.log(target);
 
-                $('<h4><i class="fa fa-clock-o" aria-hidden="true"></i> 現在時間：'+year+'-'+month+'-'+day+' '+hour+':'+minute+':'+second+'</h4>').appendTo(target);
+                $('<h4><i class="fa fa-clock-o" aria-hidden="true"></i> 現在時間：' + year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second + '</h4>').appendTo(target);
                 // var clockpicker = $('<div class="input-group clockpicker">'+
                 //     '<input type="text" class="form-control" value="23:30">'+
                 //     '<span class="input-group-addon">'+
@@ -677,39 +757,39 @@ var dashboard = $.extend(dashboard, {
 
 
 
-                $('<div class="row"><div class="col-md-3"><div class="card"><img src="img/thermometer.png" alt="" style="width:50px; height:50px;" align="middle" margin-bottom: 20px; /> <h4>'+current_temp+'°C</h4></div></div>'+
-                    '<div class="col-md-3"><div class="card"><img src="img/rain.png"style="width:50px; height:50px;" alt="" /> <h4>'+current_humidity+'%</h4></div></div>'+
-                    '<div class="col-md-3"><div class="card"><img src="img/wind.png"style="width:50px; height:50px;" alt="" /><h4>'+current_wind_direction+'°, '+current_wind_speed+'m/s</h4></div></div>'+
-                    '<div class="col-md-3"><div class="card"><img src="img/umbrellas.png"style="width:50px; height:50px;" alt="" /><h4>'+current_rain+'mm</h4></div></div>'+
+                $('<div class="row"><div class="col-md-3"><div class="card"><img src="img/thermometer.png" alt="" style="width:50px; height:50px;" align="middle" margin-bottom: 20px; /> <h4>' + current_temp + '°C</h4></div></div>' +
+                    '<div class="col-md-3"><div class="card"><img src="img/rain.png"style="width:50px; height:50px;" alt="" /> <h4>' + current_humidity + '%</h4></div></div>' +
+                    '<div class="col-md-3"><div class="card"><img src="img/wind.png"style="width:50px; height:50px;" alt="" /><h4>' + current_wind_direction + '°, ' + current_wind_speed + 'm/s</h4></div></div>' +
+                    '<div class="col-md-3"><div class="card"><img src="img/umbrellas.png"style="width:50px; height:50px;" alt="" /><h4>' + current_rain + 'mm</h4></div></div>' +
                     '</div>').appendTo(target);
-                
+
 
                 $('<h4 style="margin-top:30px;"><i class="fa fa-thermometer-half" aria-hidden="true"></i> Temperature</h4><div class="row"><div class="col-md-8 col-md-offset-2" id="container-fluid1"></div></div>').appendTo(target);
-                var test = charts_pludgin.init(SensorChartJSON,'line', '#container-fluid1' , 'Temperature (°C)');
+                var test = charts_pludgin.init(SensorChartJSON, 'line', '#container-fluid1', 'Temperature (°C)');
 
                 $('<h4 style="margin-top:30px;"><i class="fa fa-tint" aria-hidden="true"></i> Humidity</h4><div class="row"><div class="col-md-8 col-md-offset-2" id="container-fluid2"></div></div>').appendTo(target);
-                var test1 = charts_pludgin.init(HumidityChartJSON,'line', '#container-fluid2' , 'Humidity (%)');
+                var test1 = charts_pludgin.init(HumidityChartJSON, 'line', '#container-fluid2', 'Humidity (%)');
 
 
                 // $('.clockpicker').clockpicker();
             });
         },
         //end init chart
-        init_carousel:function(data){
-            return new Promise(function(resolve, reject){
+        init_carousel: function(data) {
+            return new Promise(function(resolve, reject) {
                 json_len = data.SensorChartJSON.length;
                 console.log(json_len);
-                json_len= 3;
-                
-                carousel_plugin.init(json_len, data.target).then(function(){
+                json_len = 3;
+
+                carousel_plugin.init(json_len, data.target).then(function() {
                     resolve(data)
                 });
                 // console.log('1');
                 // resolve(data);
             });
         },
-        get_ChartData:function(conf){
-            return new Promise(function(resolve, reject){
+        get_ChartData: function(conf) {
+            return new Promise(function(resolve, reject) {
                 var data = {}
                 data['target'] = conf.target;
 
@@ -718,9 +798,9 @@ var dashboard = $.extend(dashboard, {
                 d.getMinutes(); // =>  30
                 d.getSeconds(); // => 51
 
-                console.log(d.getHours(), d.getMinutes(), d.getSeconds(), d.getDate(), d.getMonth()+1, d.getFullYear());
+                console.log(d.getHours(), d.getMinutes(), d.getSeconds(), d.getDate(), d.getMonth() + 1, d.getFullYear());
                 year = d.getFullYear();
-                month = d.getMonth()+1;
+                month = d.getMonth() + 1;
                 day = d.getDate();
                 hour = d.getHours();
                 minute = d.getMinutes();
@@ -734,42 +814,40 @@ var dashboard = $.extend(dashboard, {
                 // end
 
                 //get 30 minutes before current time
-                end_time = year+'-'+month+'-'+day+' '+hour+':'+minute+':'+second;
-                if(minute>=30){
-                    start_time = year+'-'+month+'-'+(day)+' '+hour+':'+(minute-30)+':'+second;
-                }
-                else{
-                    if(hour-1 < 0){
-                        start_time = year+'-'+month+'-'+(day-1)+' '+(hour-1+24)+':'+(60+minute-30)+':'+second;
-                    }
-                    else{
-                        start_time = year+'-'+month+'-'+(day)+' '+(hour-1)+':'+(60+minute-30)+':'+second;
+                end_time = year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+                if (minute >= 30) {
+                    start_time = year + '-' + month + '-' + (day) + ' ' + hour + ':' + (minute - 30) + ':' + second;
+                } else {
+                    if (hour - 1 < 0) {
+                        start_time = year + '-' + month + '-' + (day - 1) + ' ' + (hour - 1 + 24) + ':' + (60 + minute - 30) + ':' + second;
+                    } else {
+                        start_time = year + '-' + month + '-' + (day) + ' ' + (hour - 1) + ':' + (60 + minute - 30) + ':' + second;
                     }
                 }
-                console.log(start_time , end_time);
+                console.log(start_time, end_time);
 
-                SensorChartJSON = dashboard.model.sonsor_data_chart({ 
-                    data:{
+                SensorChartJSON = dashboard.model.sonsor_data_chart({
+                    data: {
                         t: '0',
                         start: start_time,
                         end: end_time,
-                        sensor:'AgriWeather1'
+                        sensor: 'AgriWeather1'
                     }
                 });
                 data['SensorChartJSON'] = SensorChartJSON;
 
-                HumidityChartJSON = dashboard.model.sonsor_data_chart({ 
-                    data:{
+                HumidityChartJSON = dashboard.model.sonsor_data_chart({
+                    data: {
                         t: '1',
                         start: start_time,
                         end: end_time,
-                        sensor:'AgriWeather1'
+                        sensor: 'AgriWeather1'
                     }
                 });
                 data['HumidityChartJSON'] = HumidityChartJSON;
                 resolve(data);
             });
-            
+
 
 
         }
