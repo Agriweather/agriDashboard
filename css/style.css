@@ -196,16 +196,21 @@ img {
 
 @media screen and (min-width: 1021px) {
     #about_frame {
-        height: 1140px;
+        height: 1150px;
         overflow-y: hidden;
     }
 }
 
 @media screen and (max-width: 1020px) {
     #about_frame {
-        height: 2160px;
+        height: 2180px;
         overflow-y: hidden;
+        overflow-x: hidden;
     }
+}
+.card-footer .btn{
+    margin-left:10px;
+    margin-right:10px; 
 }
 
 .footer {
